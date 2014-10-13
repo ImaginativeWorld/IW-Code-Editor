@@ -1,0 +1,180 @@
+@charset "utf-8";
+
+/*
+ * Noto Sans Bengali (Bengali) http://www.google.com/fonts/earlyaccess
+ * http://fonts.googleapis.com/earlyaccess/notosansbengali.css
+ */
+
+@font-face {
+    font-family: 'Noto Sans Bengali';
+    font-style: normal;
+    font-weight: 400;
+    src: url(fonts/NotoSansBengali-Regular.eot);
+    src: url(fonts/NotoSansBengali-Regular.eot?#iefix) format('embedded-opentype'), url(fonts/NotoSansBengali-Regular.woff2) format('woff2'), url(fonts/NotoSansBengali-Regular.woff) format('woff');
+    unicode-range: U+0980-09FF;
+    /* Bangla Range (source: http://www.unicode.org/charts/PDF/U0980.pdf) */
+}
+@font-face {
+    font-family: 'Noto Sans Bengali';
+    font-style: normal;
+    font-weight: 700;
+    src: url(fonts/NotoSansBengali-Bold.eot);
+    src: url(fonts/NotoSansBengali-Bold.eot?#iefix) format('embedded-opentype'), url(fonts/NotoSansBengali-Bold.woff2) format('woff2'), url(fonts/NotoSansBengali-Bold.woff) format('woff');
+    unicode-range: U+0980-09FF;
+}
+/*
+ * Open Sans http://www.google.com/fonts
+ */
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans'), local('OpenSans'), url(fonts/OpenSans.woff2) format('woff2'), url(fonts/OpenSans.woff) format('woff');
+}
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Open Sans Bold'), local('OpenSans-Bold'), url(fonts/OpenSans-Bold.woff2) format('woff2'), url(fonts/OpenSans-Bold.woff) format('woff');
+}
+/*@import url(http://fonts.googleapis.com/css?family=Open+Sans:700,300);*/
+
+/*
+ * FontAwesome
+ */
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('fonts/fontawesome-webfont.eot?v=4.1.0');
+    src: url('fonts/fontawesome-webfont.eot?#iefix&v=4.1.0') format('embedded-opentype'), url('fonts/fontawesome-webfont.woff?v=4.1.0') format('woff'), url('fonts/fontawesome-webfont.ttf?v=4.1.0') format('truetype'), url('fonts/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    unicode-range: U+F000-F8FF;
+}
+* {
+    font-family: 'Open Sans', 'Noto Sans Bengali', 'FontAwesome', serif;
+    font-size: 14px;
+}
+* {
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    background-color: transparent;
+}
+body {
+    background-color: #ccc;
+}
+textarea,
+iframe {
+    background-color: #fff;
+}
+p {
+    margin: 3px 5px;
+}
+section#toolbar {
+    margin: 0;
+    padding: 5px 10px;
+    background-color: #f5f5f5;
+    border-bottom: 2px dotted #aaa;
+    border-left: 5px dotted #aaa;
+    border-right: 5px dotted #aaa;
+    text-align: center;
+    overflow: auto;
+}
+button {
+    border-top: 1px solid #bbb;
+    border-right: 1px solid #bbb;
+    border-bottom: 3px solid #bbb;
+    border-left: 1px solid #bbb;
+    background-color: #eee;
+    border-radius: 3px;
+    padding: 2px 5px;
+    min-width: 25px;
+    transition: all .2s ease-in-out 0s;
+    margin: 3px 2px;
+    cursor: pointer;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .25);
+    text-shadow: 1px 1px 0 #fff;
+    outline: 0;
+}
+button:hover {
+    border-top: 1px solid #999;
+    border-right: 1px solid #999;
+    border-bottom: 3px solid #D94A38;
+    /*#67AA00;*/
+    border-left: 1px solid #999;
+}
+button:active {
+    border-bottom: 1px solid #67AA00;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0);
+}
+button#code:before {
+    content: " ";
+}
+button#caution:before {
+    content: " ";
+}
+button#ques:before {
+    content: " ";
+}
+button#mark:before {
+    content: " ";
+}
+button#info:before {
+    content: " ";
+}
+button#tips:before {
+    content: " ";
+}
+div.center {
+    text-align: center;
+}
+textarea#editor,
+iframe#preview {
+    border: 1px solid #aaa;
+    min-height: 200px;
+    margin: 5px;
+}
+textarea#editor {
+    padding: 5px;
+}
+.vline {
+    background-color: transparent;
+    font-size: 20px;
+    color: #bbb;
+}
+.txtShowBox {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 1px 3px;
+    margin: 0 5px;
+    background-color: #fff;
+}
+.CodeMirror {
+    margin: 0 auto;
+    width: 95%;
+    height: auto;
+    border: 1px solid #aaa;
+    text-align: left;
+}
+.CodeMirror-scroll {
+    max-height: 200px;
+}
+.CodeMirror pre {
+    padding-left: 7px;
+    line-height: 1.25;
+}
+div#tbmain {
+    width: 70%;
+    float: left;
+}
+#tbspecialchar {
+    float: left;
+    width: 30%;
+}
+.gadgettitle {
+    font-weight: 700;
+    color: #999;
+    text-shadow: 1px 1px 0 #fff;
+}

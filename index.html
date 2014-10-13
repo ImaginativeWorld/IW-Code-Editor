@@ -1,0 +1,96 @@
+<!doctype html>
+<!--
+    Title: IW Code Editor
+    Description: Create and Edit post/tutorial for IW Code (http://code.imaginativeworld.org).
+    Version: 0.2
+    License: MPL 2.0
+
+    Author:
+        Md. Mahmudul Hasan Shohag
+        http://shohag.imaginativeworld.org
+-->
+
+
+<html>
+<!-- manifest="app.manifest"> -->
+
+<head>
+    <meta charset="utf-8">
+    <title>IW Code :: Code Editor</title>
+
+    <link href="style.css" rel="stylesheet">
+    <script src="functions.js"></script>
+
+</head>
+
+<body onload="loadDraft()">
+
+    <section id="toolbar">
+        <div id="tbmain">
+            <button id="code" onclick="insCode()" title="Insert Code Snippet">CODE</button>
+            <button id="caution" onclick="insCaution()" title="Insert Caution Snippet">CAUTION</button>
+            <button id="ques" onclick="insQues()" title="Insert Quesions Snippet">QUESTION</button>
+            <button id="mark" onclick="insMark()" title="Insert Mark Snippet">MARK</button>
+            <button id="info" onclick="insInfo()" title="Insert Info Snippet">INFO</button>
+            <button id="tips" onclick="insTips()" title="Insert Tips Snippet">TIPS</button>
+            <span class="vline">|</span>
+            <button onclick="ready()">Sample Structure</button>
+            <br>
+            <button onclick="bTxt()" title="Insert Bold Snippet"><b>B</b>
+            </button>
+            <button onclick="iTxt()" title="Insert Italic Snippet"><i>i</i>
+            </button>
+            <button onclick="uTxt()" title="Insert Underline Snippet"><u>U</u>
+            </button>
+            <span class="vline">|</span>
+            <button onclick="pTxt()" title="Insert Paragraph Snippet">P</button>
+            <button onclick="h1Txt()" title="Insert Header1 Snippet">h1</button>
+            <button onclick="h2Txt()" title="Insert Header2 Snippet">h2</button>
+            <button onclick="h3Txt()" title="Insert Header3 Snippet">h3</button>
+            <button onclick="h4Txt()" title="Insert Header4 Snippet">h4</button>
+            <span class="vline">|</span>
+
+            <button onclick="smallTxt()" title="Decrease Font Size">-</button>
+            <span id="showFontSize" class="txtShowBox">16px</span>
+
+            <button onclick="bigTxt()" title="Increase Font Size">+</button>
+            <span class="vline">|</span>
+            <button onclick="redTxt()" title="Insert Red Text"><span style="color:#DD4A68;font-weight: 700;">#</span>
+            </button>
+
+            <button onclick="blueTxt()" title="Insert Blue Text"><span style="color:#07A;font-weight: 700;">#</span>
+            </button>
+            <button onclick="egTxt()" title="Insert Blue Text">eg. title</button>
+            <span class="vline">|</span>
+            <button onclick="keyTxt()" title="Insert Key-board Text">[key]</button>
+            <button id="codeConvBtn" onclick="codeConverter()" title="Auto Convert Special Character"><b>&#36;</b> → <b>&#38;&#35;36;</b>
+            </button>
+<!--            <button onclick="loadDesign()" title="">TEST</button>-->
+        </div>
+        <div id="tbspecialchar">
+            <p class="gadgettitle">Special Characters</p>
+            <button onclick="specialChar('<')" title="Insert this Special character">&lt;</button>
+            <button onclick="specialChar('>')" title="Insert this Special character">&gt;</button>
+            <button onclick="specialChar('q')" title="Insert this Special character">&quot;</button>
+            <button onclick="specialChar('&')" title="Insert this Special character">&#38;</button>
+            <button onclick="specialChar('#')" title="Insert this Special character">&#35;</button>
+        </div>
+
+    </section>
+    <section id="editorBody">
+        <div class="center">
+
+            <textarea onkeyup="preview()" onkeypress="autoText(event)" onkeydown="autoTextDown(event)" style="font-size: 16px" type="text" name="writecode" id="editor"></textarea>
+
+        </div>
+
+        <div class="center">
+            <iframe id="preview"></iframe>
+        </div>
+    </section>
+    <script>loadDesign();</script>
+    
+</body>
+
+
+</html>
