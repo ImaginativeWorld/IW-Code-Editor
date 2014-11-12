@@ -1,8 +1,8 @@
 <!doctype html>
 <!--
-    Title: IW Code Editor
-    Description: Create and Edit post/tutorial for IW Code (http://code.imaginativeworld.org).
-    Version: 0.2
+    Title: IW Code :: Editor
+    Description: Create and Edit post/tutorial for Imaginative World Code (http://code.imaginativeworld.org).
+    Version: 0.4
     License: MPL 2.0
 
     Author:
@@ -10,87 +10,231 @@
         http://shohag.imaginativeworld.org
 -->
 
-
 <html>
 <!-- manifest="app.manifest"> -->
 
 <head>
     <meta charset="utf-8">
-    <title>IW Code :: Code Editor</title>
+    <title>Imaginative World Code :: Editor 0.4</title>
 
-    <link href="style.css" rel="stylesheet">
-    <script src="functions.js"></script>
-
+    <link href="style.min.css" rel="stylesheet">
+    <script src="functions.min.js"></script>
+    <script src="prefixfree.min.js"></script>
 </head>
 
 <body onload="loadDraft()">
-
-    <section id="toolbar">
+    <section style="display:none" id="toolbar">
         <div id="tbmain">
-            <button id="code" onclick="insCode()" title="Insert Code Snippet">CODE</button>
-            <button id="caution" onclick="insCaution()" title="Insert Caution Snippet">CAUTION</button>
-            <button id="ques" onclick="insQues()" title="Insert Quesions Snippet">QUESTION</button>
-            <button id="mark" onclick="insMark()" title="Insert Mark Snippet">MARK</button>
-            <button id="info" onclick="insInfo()" title="Insert Info Snippet">INFO</button>
-            <button id="tips" onclick="insTips()" title="Insert Tips Snippet">TIPS</button>
+            <button id="code" onclick="insCode()" title="Insert Code Snippet (Alt + 1)">CODE</button>
             <span class="vline">|</span>
-            <button onclick="ready()">Sample Structure</button>
+            <button id="mark" onclick="insMark()" title="Insert Mark Snippet (Alt + 2)">MARK</button>
+            <button id="info" onclick="insInfo()" title="Insert Info Snippet (Alt + 3)">INFO</button>
+            <button id="ques" onclick="insQues()" title="Insert Quesions Snippet (Alt + 4)">QUESTION</button>
+            <button id="tips" onclick="insTips()" title="Insert Tips Snippet (Alt + 5)">TIPS</button>
+            <button id="caution" onclick="insCaution()" title="Insert Caution Snippet (Alt + 6)">CAUTION</button>
             <br>
-            <button onclick="bTxt()" title="Insert Bold Snippet"><b>B</b>
+            <button id="bBtn" onclick="insertTxt('strong')" title="Insert Bold Snippet (Ctrl + B)"></button>
+            <button id="iBtn" onclick="insertTxt('em')" title="Insert Italic Snippet (Ctrl + I)">
             </button>
-            <button onclick="iTxt()" title="Insert Italic Snippet"><i>i</i>
+            <button id="uBtn" onclick="insertTxt('u')" title="Insert Underline Snippet (Ctrl + U)">
             </button>
-            <button onclick="uTxt()" title="Insert Underline Snippet"><u>U</u>
+            <button id="sBtn" onclick="insertTxt('del')" title="Insert StrikeThrough Snippet">
             </button>
             <span class="vline">|</span>
-            <button onclick="pTxt()" title="Insert Paragraph Snippet">P</button>
-            <button onclick="h1Txt()" title="Insert Header1 Snippet">h1</button>
-            <button onclick="h2Txt()" title="Insert Header2 Snippet">h2</button>
-            <button onclick="h3Txt()" title="Insert Header3 Snippet">h3</button>
-            <button onclick="h4Txt()" title="Insert Header4 Snippet">h4</button>
+            <button id="linkBtn" onclick="insertTxt('a')" title="Insert a Link"></button>
+            <button id="qBtn" onclick="insertTxt('blockquote')" title="Insert a Blockquote Snippet"></button>
+            <button id="imgBtn" onclick="insertTxt('img')" title="Insert a Image"></button>
+            <button id="tableBtn" onclick="btnTable()" title="Insert a Table"></button>
+            <span class="vline">|</span> 
+            <button onclick="insertTxt('p')" title="Insert Paragraph Snippet (Ctrl + P)">P</button>
+            <button onclick="insertTxt('h1')" title="Insert Header1 Snippet (Ctrl + 1)">h1</button>
+            <button onclick="insertTxt('h2')" title="Insert Header2 Snippet (Ctrl + 2)">h2</button>
+            <button onclick="insertTxt('h3')" title="Insert Header3 Snippet (Ctrl + 3)">h3</button>
+            <button onclick="insertTxt('h4')" title="Insert Header4 Snippet (Ctrl + 4">h4</button>
             <span class="vline">|</span>
-
-            <button onclick="smallTxt()" title="Decrease Font Size">-</button>
-            <span id="showFontSize" class="txtShowBox">16px</span>
-
-            <button onclick="bigTxt()" title="Increase Font Size">+</button>
-            <span class="vline">|</span>
+            <button id="ulBtn" onclick="insertTxt('ul')" title="Insert an Un-Ordared List"></button>
+            <button id="olBtn" onclick="insertTxt('ol')" title="Insert an Ordared List"></button>
+            <button id="liBtn" onclick="insertTxt('li')" title="Insert a List Item"></button>
+            <button id="hrBtn" onclick="insertTxt('hr')" title="Insert a Horizontal Line"></button>
+            <br>
             <button onclick="redTxt()" title="Insert Red Text"><span style="color:#DD4A68;font-weight: 700;">#</span>
             </button>
-
             <button onclick="blueTxt()" title="Insert Blue Text"><span style="color:#07A;font-weight: 700;">#</span>
             </button>
             <button onclick="egTxt()" title="Insert Blue Text">eg. title</button>
-            <span class="vline">|</span>
             <button onclick="keyTxt()" title="Insert Key-board Text">[key]</button>
-            <button id="codeConvBtn" onclick="codeConverter()" title="Auto Convert Special Character"><b>&#36;</b> → <b>&#38;&#35;36;</b>
+            <span class="vline">|</span>
+            <button id="plusBtn" onclick="bigTxt()" title="Increase Font Size"></button>
+            <span id="showFontSize" class="txtShowBox">16px</span>
+            <button id="minusBtn" onclick="smallTxt()" title="Decrease Font Size"></button>
+            <span class="vline">|</span>
+            <button class="OnOffBtn" id="codeConvBtn" onclick="codeConverter()" title="Auto Convert Special Characters"><b>&#36;</b> → <b>&#38;&#35;36;</b>
             </button>
-<!--            <button onclick="loadDesign()" title="">TEST</button>-->
+            <button class="OnOffBtn" id="stopLiveViewBtn" onclick="stopLiveView()" title="Stop Live Preview"></button>
+            <span class="vline">|</span>
+            <button id="PreviewBtn" onclick="preview()" title="Show Preview"></button>
         </div>
-        <div id="tbspecialchar">
-            <p class="gadgettitle">Special Characters</p>
-            <button onclick="specialChar('<')" title="Insert this Special character">&lt;</button>
-            <button onclick="specialChar('>')" title="Insert this Special character">&gt;</button>
-            <button onclick="specialChar('q')" title="Insert this Special character">&quot;</button>
-            <button onclick="specialChar('&')" title="Insert this Special character">&#38;</button>
-            <button onclick="specialChar('#')" title="Insert this Special character">&#35;</button>
+        <div id="tbsecond">
+            <div id="tbspchar">
+                <p class="gadgettitle">Special Characters</p>
+                <button onclick="specialChar('<')" title="Insert this Special character">&lt;</button>
+                <button onclick="specialChar('>')" title="Insert this Special character">&gt;</button>
+                <button onclick="specialChar('q')" title="Insert this Special character">&quot;</button>
+                <button onclick="specialChar('&')" title="Insert this Special character">&#38;</button>
+                <button onclick="specialChar('#')" title="Insert this Special character">&#35;</button>
+            </div>
+            <div id="tbdraft">
+                <button id="draft1" class="OnOffBtn" onclick="changeDraft(1)">Draft 1</button>
+                <button id="draft2" class="OnOffBtn" onclick="changeDraft(2)">Draft 2</button>
+                <button id="draft3" class="OnOffBtn" onclick="changeDraft(3)">Draft 3</button>
+                <button id="draft4" class="OnOffBtn" onclick="changeDraft(4)">Draft 4</button>
+            </div>
         </div>
+    </section>
+    <section>
+        <div id="minToolbar">
+            <button style="display:none" id="aboutBtn" title="About this app" onclick="showAbout()"></button>
+            <button style="display:none" id="helpBtn" title="See help Docs" onclick="help()"></button>
+            <button style="display:none" id="minToolbarBtn" class="OnOffBtn" onclick="minToolbar()" title="Show/Hide Toolbar"></button>
+            <button class="OnOffBtn" id="changeViewBtn" onclick="changeView()" title="Change the View"></button>
+        </div>
+        <div id="titleUrl">
 
+            <p><a href="http://code.imaginativeworld.org" target="_blank">Imaginative World Code</a> :: Editor 0.4
+            </p>
+
+        </div>
     </section>
     <section id="editorBody">
         <div class="center">
 
-            <textarea onkeyup="preview()" onkeypress="autoText(event)" onkeydown="autoTextDown(event)" style="font-size: 16px" type="text" name="writecode" id="editor"></textarea>
+            <textarea autofocus placeholder="Write Post Here" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" onkeyup="saveDraft()" onkeypress="autoText(event)" onkeydown="autoTextDown(event)" style="font-size: 16px" type="text" name="writecode" id="editor"></textarea>
 
         </div>
 
         <div class="center">
+
             <iframe id="preview"></iframe>
+
         </div>
     </section>
-    <script>loadDesign();</script>
-    
-</body>
 
+    <section id="fullWindow">
+        <div class="msgBox" id="helpDoc">
+            <h1>Imaginative World Code :: Editor</h1>
+            <h2>Open-source HTML code editor for <a href="http://code.imaginativeworld.org" target="_blank" >Imaginative World Code</a>.</h2>
+            <p><b>Version:</b> 0.4</p>
+            <p><b>License:</b> MPL 2.0</p>
+            <br>
+            <p><b>Author:</b>
+            </p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;Md. Mahmudul Hasan Shohag</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://shohag.imaginativeworld.org" target="_blank">shohag.imaginativeworld.org</a>
+            </p>
+            <br>
+            <p><b>Source-code:</b>
+            </p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/ImaginativeWorld/IW-Code-Editor" target="_blank">GitHub</a>
+            </p>
+            <br>
+            <p><b>Keyboard short-cuts:</b>
+            </p>
+            <table style="margin: 5px 25px;">
+                <tr>
+                    <td style="width: 100px;">Ctrl + X</td>
+                    <td>Cut</td>
+                </tr>
+                <tr>
+                    <td>Ctrl + C</td>
+                    <td>Copy</td>
+                </tr>
+                <tr>
+                    <td>Ctrl + V</td>
+                    <td>Paste</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Ctrl + B</td>
+                    <td>Bold</td>
+                </tr>
+                <tr>
+                    <td>Ctrl + I</td>
+                    <td>Italic</td>
+                </tr>
+                <tr>
+                    <td>Ctrl + U</td>
+                    <td>Undarline</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Ctrl + P</td>
+                    <td>Insert Paragraph Snippet</td>
+                </tr>
+                <tr>
+                    <td>Ctrl + 1</td>
+                    <td>Insert Heading 1 Snippet</td>
+                </tr>
+                <tr>
+                    <td>Ctrl + 2</td>
+                    <td>Insert Heading 2 Snippet</td>
+                </tr>
+                <tr>
+                    <td>Ctrl + 3</td>
+                    <td>Insert Heading 3 Snippet</td>
+                </tr>
+                <tr>
+                    <td>Ctrl + 4</td>
+                    <td>Insert Heading 4 Snippet</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Alt + 1</td>
+                    <td>Insert Code Snippet</td>
+                </tr>
+                <tr>
+                    <td>Alt + 2</td>
+                    <td>Insert Mark Snippet</td>
+                </tr>
+                <tr>
+                    <td>Alt + 3</td>
+                    <td>Insert Info Snippet</td>
+                </tr>
+                <tr>
+                    <td>Alt + 4</td>
+                    <td>Insert Question Snippet</td>
+                </tr>
+                <tr>
+                    <td>Alt + 5</td>
+                    <td>Insert Tips Snippet</td>
+                </tr>
+                <tr>
+                    <td>Alt + 6</td>
+                    <td>Insert Caution Snippet</td>
+                </tr>
+            </table>
+            <br>
+            <p style="color:#DD4A68"><strong>দ্রষ্টব্যঃ</strong> এ এ্যাপে স্বয়ংক্রিয় লেখা/কোড সংরক্ষণের সুবিধা থাকলেও বুদ্ধিমানের কাজ হচ্ছে <strong>প্রত্যেকবার এ্যাপটি বন্ধ করার আগে নিজ দায়িত্বে হার্ডডিস্কে/পেনড্রাইভে লেখা/কোড সংরক্ষণ করে রাখা</strong>। কোনো কারণে এ্যাপ দ্বারা সংরক্ষিত লিখা হারিয়ে গেলে কান্নাকাটি করে লাভ হবে না.. ;)</p>
+            <div class="btnBox">
+                <button class="fxBtn" onclick="showAbout()">Close</button>
+            </div>
+        </div>
+
+
+    </section>
+
+    <script>
+        loadDesign();
+    </script>
+
+</body>
 
 </html>
