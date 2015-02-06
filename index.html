@@ -1,8 +1,8 @@
 <!doctype html>
 <!--
     Title: IW Code :: Editor
-    Description: Create and Edit post/tutorial for Imaginative World Code (http://code.imaginativeworld.org).
-    Version: 0.4
+    Description: Open-source HTML code editor for Imaginative World Code. (http://code.imaginativeworld.org).
+    Version: 0.5
     License: MPL 2.0
 
     Author:
@@ -15,14 +15,18 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Imaginative World Code :: Editor 0.4</title>
-
+    <title>Imaginative World Code :: Editor 0.5</title>
+    <meta name="keywords" content="imaginative world code editor,ইমাজিনেটিভ ওয়ার্ল্ড কোড এডিটর,iwc editor,iwceditor" />
+    <meta name="description" content="Open-source HTML code editor for Imaginative World Code.">
+    <meta name="Author" content="Md. Mahmudul Hasan Shohag">
     <link href="style.min.css" rel="stylesheet">
     <script src="functions.min.js"></script>
     <script src="prefixfree.min.js"></script>
 </head>
 
 <body onload="loadDraft()">
+    <h1 class="title">Imaginative World Code :: Editor</h1>
+    <h1 class="title">ইমাজিনেটিভ ওয়ার্ল্ড কোড :: এডিটর</h1>
     <section style="display:none" id="toolbar">
         <div id="tbmain">
             <button id="code" onclick="insCode()" title="Insert Code Snippet (Alt + 1)">CODE</button>
@@ -45,7 +49,7 @@
             <button id="qBtn" onclick="insertTxt('blockquote')" title="Insert a Blockquote Snippet"></button>
             <button id="imgBtn" onclick="insertTxt('img')" title="Insert a Image"></button>
             <button id="tableBtn" onclick="btnTable()" title="Insert a Table"></button>
-            <span class="vline">|</span> 
+            <span class="vline">|</span>
             <button onclick="insertTxt('p')" title="Insert Paragraph Snippet (Ctrl + P)">P</button>
             <button onclick="insertTxt('h1')" title="Insert Header1 Snippet (Ctrl + 1)">h1</button>
             <button onclick="insertTxt('h2')" title="Insert Header2 Snippet (Ctrl + 2)">h2</button>
@@ -100,7 +104,7 @@
         </div>
         <div id="titleUrl">
 
-            <p><a href="http://code.imaginativeworld.org" target="_blank">Imaginative World Code</a> :: Editor 0.4
+            <p><a href="http://code.imaginativeworld.org" target="_blank">Imaginative World Code</a> :: Editor 0.5
             </p>
 
         </div>
@@ -108,7 +112,7 @@
     <section id="editorBody">
         <div class="center">
 
-            <textarea autofocus placeholder="Write Post Here" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" onkeyup="saveDraft()" onkeypress="autoText(event)" onkeydown="autoTextDown(event)" style="font-size: 16px" type="text" name="writecode" id="editor"></textarea>
+            <textarea autofocus placeholder="Write Code Here" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" onkeyup="saveDraft()" onkeypress="autoText(event)" onkeydown="autoTextDown(event)" style="font-size: 16px" type="text" name="writecode" id="editor"></textarea>
 
         </div>
 
@@ -123,7 +127,7 @@
         <div class="msgBox" id="helpDoc">
             <h1>Imaginative World Code :: Editor</h1>
             <h2>Open-source HTML code editor for <a href="http://code.imaginativeworld.org" target="_blank" >Imaginative World Code</a>.</h2>
-            <p><b>Version:</b> 0.4</p>
+            <p><b>Version:</b> 0.5</p>
             <p><b>License:</b> MPL 2.0</p>
             <br>
             <p><b>Author:</b>
